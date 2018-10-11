@@ -14,24 +14,39 @@
 ||                                                                  ||
 ||                                                                  ||
 ||                                                                  ||
-||\                   Use C-D to scroll down                    /||
+||\                     Use C-D to scroll down                     /||
 ======================================================================
 ======================================================================
 -------------------------------Why Vim?-------------------------------
 ======================================================================
 
-Ubiquitous - Vi, Vim's predecessor, can be found on nearly every *nix
-    system.
+----------
+Ubiquitous
+----------
+    Vi, Vim's predecessor, can be found on nearly every *nix system
+    and shares much of the same functionality. Many even make the
+    Vi command actually run Vim.
 
-Fast - Vi's source code was written in the 70s for much slower
-    systems, so Vim is, naturally, lightweight.
+----
+Fast
+----
+    Vi's source code was written in the 70s for much slower
+    systems, so Vim is, naturally, lightweight. Modernized versions
+    like Neovim have added asynchronous processing and the ability to
+    script in languages like Perl and Python at the cost of speed.
 
-Extensible - Vim's scripting language has spawned books and an
-    enormous community of plugin writers. If another editor or IDE
-    has something that Vim doesn't, you can probably find a plugin
+----------
+Extensible
+----------
+    Vim's scripting language has spawned books and an enormous
+    community of plugin writers. If another editor or IDE has
+    something that Vim doesn't, you can probably find a plugin
     for it.
 
-Efficient - Since Vi/Vim is controlled only with the keyboard, less
+---------
+Efficient
+---------
+    Since Vi/Vim is controlled only with the keyboard, less
     time is spent moving your hand to your mouse. Is also more
     ergonomic than Emacs' RSI inducing key combinations.
 
@@ -39,7 +54,9 @@ Efficient - Since Vi/Vim is controlled only with the keyboard, less
 -----------------------------Vim's Modes------------------------------
 ======================================================================
 
+----------------
 Vim has 5 modes:
+----------------
     - Normal (Esc to leave any other mode)
         Single and serial keys perform actions
         Will be denoted with <command>, <C-$> is C-$ in normal mode
@@ -60,7 +77,10 @@ Vim has 5 modes:
 ======================================================================
 -----------------Normal Mode, Movement, and Commands------------------
 ======================================================================
+------------------
 Movement commands:
+------------------
+
     - <h>, <j>, <k>, <l> for left, down, up, right respectively
 
     - <C-u>, <C-d> to move half a page up, down
@@ -83,7 +103,10 @@ Movement commands:
         - <T> and <F> do the same backwards
         - <,> and <;> move to next/prev result in line
 
+-----------------
 Editing commands:
+-----------------
+
     - <i>, <a>, <I>, <A> to enter Insert mode before/after current
         character/line
 
@@ -111,7 +134,10 @@ Editing commands:
 
     - <:> to enter Command-Line mode
 
+----------------------------
 Basic Command-Line commands:
+----------------------------
+
     - :write {directory/filename} to write the current buffer to
         the directory under the given filename (w for short)
 
@@ -138,20 +164,24 @@ can be called with :noh
 
 Vim's commands can be run in a sentence-like structure:
     <{operator}{count}{motion}>
-  The count is optional and takes a lot of adjustment but is one
-    of the best ways to become more efficient.
 
 An operator is almost anything referenced in the prior section.
 
-Count is the degree you want to be applied to the motion.
+Count is the degree you want to be applied to the motion, and is
+optional.
 
 Motion is any command that moves the cursor:
-    <t>, <w>, <b>, <e>, <t>/<f>, </>
+    <t>, <w>, <b>, <e>, <t>/<f>, </>, etc.
 
     Some others like <i> (inside) and <a> (around) are essential
-      for effective editing, but breaks many count commands
+    for effective editing, but breaks many count commands
 
+    Some operators that act immediately can have a count put on them:
+      <i>, <p>, there are many others
+
+--------------------------------
 Some sample commands to try out:
+--------------------------------
     <c3w> (changes text in the next 3 words)
       Try <c3w> with your cursor on the "c" in "changes", then
       again on "n". Note that it is from the cursor position.
@@ -166,11 +196,11 @@ Some sample commands to try out:
 
     <"a2p> (pastes the text in register 'a' 2 times)
 
-    <c2f.> (change text to next period, inclusive)
+    <c2t.> (change text to second period, inclusive)
       A sample sentence. A second one.
 
-    <dt;> (delete text to next semicolon, non-inclusive)
-      cout << "Vim is Awesome!" << endl;
+    <5i>TEXT<Esc> (Insert text 5 times once you leave Insert mode)
+      Use the above command to type 'Hello_' 5 times
 
 ======================================================================
 --------------------Registers, or Multi-Clipboards--------------------
@@ -182,12 +212,18 @@ access to over 20 "clipboards" (some of which are reserved/special).
 <"> is used to choose which register you want to use for the following
 register-based command.
 
+-------------------------------------------------------------------
 Based on this, you have a register for each alphanumeric character.
 You can also easily append text to a register.
+----------------------------------------------
+
     <"ayiw> will yank the current word to register a, while
     <"Ayiw> will append the current word to register a
 
+------------------------------------------------
 There are also some important special registers:
+------------------------------------------------
+
     '*' is the system clipboard, how you copy/paste between Vim and
         other programs
 
