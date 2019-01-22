@@ -39,15 +39,3 @@ set splitbelow splitright
 
 "Type kj quickly while inserting to quit Insert mode
 inoremap kj <Esc>
-
-" Disable Arrow keys in Escape mode
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
-" Disable Arrow keys in Insert mode
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
