@@ -1,0 +1,299 @@
+# Vim: Victory in Modes
+
+To start, just use `j`{normal} and `k`{normal} to move down and up, respectively. Make sure
+you are using the included config file with NeoVim to get the most out of this tutorial.
+
+## Table of Contents
+
+Press enter on any of the following to jump to the section
+
+- [Why \[Neo\]Vim?](*why*)
+	- [Ubiquitous](*ubiquity*)
+	- [Fast](*fast*)
+	- [Extensible](*extensible*)
+	- [Efficient](*efficiency*)
+- [Vim's Modes](*modes*)
+	- [Normal](*normal-mode*)
+	- [Insert](*insert-mode*)
+	- [Visual](*visual-mode*)
+	- [Command-Line](*command-mode*)
+- [Normal Mode, Movement, and Commands](*normal-stuff*)
+- [Editing Text](*editing*)
+- [Basic Command-Line Commands](*command-stuff*)
+- [Understanding Vim's Language](*language*)
+- [Registers, or Multi-Clipboards](*registers*)
+- [Macros](*macros*)
+- [Configuration](*config*)
+
+## Why [Neo]Vim? *why*
+
+### Ubiquitous *ubiquity*
+
+Vi, Vim's predecessor, can be found on nearly every \*nix system and shares much of the
+same functionality. Many even make the Vi command actually run Vim, since the Vi[m]
+philosophy values efficiency.
+
+### Fast *fast*
+
+Vi's source code was written in the 70s for much slower systems, so Vim is, consequently,
+lightweight. Modernized versions like NeoVim have added asynchronous processing and
+the ability to script in languages like Perl and Python at the cost of only a little speed.
+
+### Extensible *extensible*
+
+Vim's scripting language has spawned books and an enormous community of plugin writers. If
+another editor or IDE has something that Vim doesn't, you can probably find a plugin for it.
+
+### Efficient *efficiency*
+
+Since Vi/Vim is controlled only with the keyboard, less time is spent moving your hand to 
+your mouse. It is also more ergonomic than Emacs' carpal-tunnel-inducing key combinations.
+
+## Vim's Modes *modes*
+
+### Normal *normal-mode*
+
+- `<Esc>`{normal} to leave any other mode
+- Single and serial keys perform actions
+- Will be denoted with `gq`{normal}, where `gq`{normal} is the command being used, or as shown below
+
+~~~normal
+gq
+~~~
+
+Commands in carets describe key combinations. For example, `<C-w>`{normal} describes Control and w.
+Carets will also be used to describe placeholders for variable parts of a command.
+
+Try entering insert mode on this line, then using Escape to exit.
+
+### Insert *insert-mode*
+
+- Mostly `i`{normal}, `a`{normal}, `c`{normal}, and their capital variants
+- Insertion of text, has some Control commands available
+- Most insert mode commands are a key with a modifier, denoted as shown below due to
+their rarity
+
+~~~insert
+<C-o>
+~~~
+
+Try making the following two lines match by using `i`{normal} to insert before the character
+under the cursor, and `a`{normal} to insert after the character under the cursor. We will go over
+the use of `c`{normal} later.
+
+This is sentence, but it to be missing something
+This is a sentence, but it seems to be missing something.
+
+### Visual *visual-mode*
+
+- Highlights text that can be used by Normal mode commands
+- Standard - `v`{normal}
+- Line - `V`{normal} Notice this is a capital; this often means a "suped-up" version of the lowercase
+- Block - `C-v`{normal}
+
+### Command-Line *command-mode*
+
+- Allows access to more specific/advanced commands
+- If you are familiar with ED (prounounced as its letters), many of its commands are integrated
+- Enter command-line mode by using a colon (`:`{normal}) in normal mode
+- Denoted like shown below, without the leading colon or inline with a colon
+
+~~~cmd
+echom "hello"
+~~~
+
+## Normal Mode, Movement, and Commands *normal-stuff*
+
+If you want to read the help text on these, use `K`{normal} to read the help text
+for the term under the cursor. If the text is highlighted like [this](help), you can
+just press enter to go the linked help page.
+
+- `h`{normal}, `j`{normal}, `k`{normal}, `l`{normal} for left, down, up, right respectively
+- `<C-u>`{normal}, `<C-d>`{normal} to move **half** a page up or down, respectively
+- `<C-b>`{normal}, `<C-f>`{normal} to move a **full** page up or down, respectively
+- `/`{normal}, `?`{normal} to search forward or backward for text entered after the character
+	- If [incsearch](incsearch) is not set, it will not search until you press enter
+	- If [hlsearch](hlsearch) is set, all the matches will be highlighted
+	- `n`{normal} and `N`{normal} move to next/previous results
+
+Use `/`{normal}, `n`{normal}, and `N`{normal} to search for "character".
+- `gg`{normal}, `G`{normal} to move to top, bottom of current file
+- `<number>G`{normal} to jump to line <number>
+- `0`{normal}, `$`{normal} to move to beginning, end of line
+- `^`{normal} for the first non-whitespace character
+- `w`{normal} and `b`{normal} to move to beginning of next/prev word
+	- `W`{normal} and `B`{normal} are space-separated words, or WORDS (big words)
+- `t{char}`{normal} and `f{char}`{normal} move to/find {char} in same line
+	- `T`{normal} and `F`{normal} do the same backwards
+	- `;`{normal} and `,`{normal} move to next/prev result in line
+
+## Editing Text *editing*
+
+- `i`{normal}, `a`{normal}, `I`{normal}, `A`{normal} to enter Insert mode before/after
+	current character/line
+- `<Esc>`{normal} or `<C-[>`{normal} to return to Normal mode from Insert mode
+- `c`{normal} changes text along a motion, `C`{normal} changes until end of line
+- `y`{normal} to yank (or copy) text, `yy`{normal} or `Y`{normal} to yank current line
+- `p`{normal} pastes after cursor, `P`{normal} pastes before cursor
+- `u`{normal} to undo, `C-r`{normal} to redo
+- `d`{normal} deletes text over a motion, `dd`{normal} for current line
+- `x`{normal} to delete character under cursor, or characters if in visual mode
+- `.`{normal} to repeat last command sentence (extremely useful)
+	- 
+- `==`{normal}  `>>`{normal}, `<<`{normal} auto-indent, indent, and un-indent current line
+	- [==](==), [>>](>>), [<<](<<)
+	- Notice that they correspond to the direction the line is being indented
+- `:`{normal} to enter Command-Line mode
+
+Now that we have the basics in place, use `D`{normal} to delete everything after the comma
+
+Here is some text, and some more to delete
+
+## Basic Command-Line Commands *command-stuff*
+
+~~~cmd
+write {directory/filename}
+~~~
+- Save {directory/filename} to write the current buffer to the file under the given filename
+- {directory/filename} can be a path, either absolute or relative to the current directory
+- `w` is short for `write` ([:write](:write))
+
+~~~cmd
+quit
+~~~
+- Quits the current buffer/file. `q` is short for `quit`, and appending a `!` will discard
+	unsaved changes to the file ([:quit](:quit)). If is is the only file/buffer in view, it will
+	close vim.
+
+~~~cmd
+edit {directory/filename}
+~~~
+- Edits the file at {directory/filename}, which is a path (similar to `write`)
+- `e` is short for `edit` ([:edit](:edit))
+
+- Some other useful commands that aren't necessary, but are good to know
+	- `ls` to list buffers with their buffer numbers ([:ls](:ls))
+	- `buffer <number or name>` will switch to the specified buffer; `b` for short ([:buffer](:buffer))
+	- `[%|<range>]substitute/{pattern}/{replacement}/{flags}` for search and replace ([:substitute](:substitute))
+
+## Understanding Vim's Language *language*
+
+Many of Vim's commands can be run in a sentence-like structure:
+
+~~~normal
+{operator}{count}{motion}
+~~~
+
+An operator is almost anything referenced in the prior section. Count is 
+the degree you want to be applied to the motion, and is optional. Motion is
+any command that moves the cursor:
+
+- `t`{normal} to find a character and put the cursor immediately before it
+- `f`{normal} to find a character and put the cursor on it
+- `w`{normal} to go to the beginning of the next word
+- `b`{normal} to go to the beginning of the last word
+- `e`{normal} to go to the end of the next word
+- `/`{normal} to go to the first instance of searched text
+
+For example, `d3w`{normal} will `d`{normal}elete 3 `w`{normal}ords.
+Note that this is not 3 entire words, but 3 uses of `w`{normal} as if it were a motion.
+For example, put your cursor at the beginning of 'quick' below and use `d6w`{normal} to `d`{normal}elete 6 `w`{normal}ords.
+
+The quick brown fox jumps over the lazy dog.
+
+Some operators that act immediately can have a count put before them:
+- `i`{normal} to insert
+- `p`{normal} to paste from the unnamed register (explained later)
+
+Make the following two lines match using variants of `d`{normal} commands.
+It is recommended to use `v`{normal} to enter visual mode, then move as you need, then use `d`{normal}.
+
+This sentence has has too too too many words.
+This sentence has too many words.
+
+Vim also has text objects, structured like so.
+
+~~~normal
+{operator}{text object}
+~~~
+
+## Registers, or Multi-Clipboards *registers*
+
+One of Vim's most powerful features is [registers](registers), which gives you
+access to over 20 "clipboards" (some of which are reserved/special).
+
+`"`{normal} is used to choose which register you want to use for the following
+register-based command, and is read as 'register'. So, for example, `"yp`{normal} will paste the contents of
+register y after the cursor and would be described as 'paste from register y' or 'register y paste'.
+
+For the rest of the section, registers are prefixed with `"`{normal} for clarity, so
+register z will be denoted `"z`{normal}.
+
+Based on this, you have a register for each alphanumeric character.
+You can also easily append text to a register via the capital letter. [quotex](quotex)
+
+`"ayiw`{normal} will yank the current word to `"a`{normal}, while
+`"Ayiw`{normal} will append the current word to `"a`{normal}
+
+There are also some important special registers:
+
+- `""`{normal} ([quotequote](quotequote)) is the unnamed register, the default location for most
+	deletion and replace commands
+
+- `"*`{normal} ([quotestar](quotestar)) and `"+`{normal} ([quoteplus](quoteplus)) are effectively
+	system clipboard. `"*`{normal} refers to the primary selection, which is text selected by the terminal,
+	while `"+`{normal} is the GUI clipboard, so any text copied from a browser or other utility that
+	interacts with the system clipboard manager
+
+- `".`{normal} ([quote.](quote.)) is the last inserted text (not per character, but all of the
+	text entered on last time you were in Insert mode). Read only.
+
+- `"%`{normal} ([quote%](quote%)) is the directory path from where Vim was opened to the current
+	file. Read only.
+
+- `":`{normal} ([quote:](quote:)) is the most recently executed Command-Line command. Read only.
+
+- `"_`{normal} ([quote_](quote_)) is the "black hole", essentially equivalent to /dev/null.
+	Anything put inside is gone for good, so is good for security
+
+- `"#`{normal} ([quote#](quote#)) is the last edited file (the last file written out). Read only.
+
+- `"0`{normal} ([quote0](quote0)) will always be the most recently yanked text.
+
+- `"1`{normal}-`"9`{normal} ([quote_number](quote_number)) will be the 9 most recent text deletions
+	more than a line.
+
+- `"-`{normal} ([quote-](quote-)) is any text deletion less than a line, eg 3x.
+
+- `"/`{normal} ([quote/](quote/)) is your last search term.
+
+- `"=`{normal} ([quote=](quote=)) is a SUPER special, advanced register used for evaluating
+	expressions. This one is awesome for macros.
+
+Try using append registers to efficiently make the second line read "Actually, there are one two three ways".
+
+Are there one, two, or three ways to do something?
+Actually, there are
+
+## Macros *macros*
+Another of Vim's coolest features is macro recording and editing;
+while advanced, it can greatly speed up menial tasks.
+
+`q<register>`{normal} will begin recording all your keystrokes until you press q
+again, then put it into <register>.
+
+`@<register>`{normal} will run the macro in <register>, and `@@`{normal} will execute the
+last run macro.
+
+The fact that the macros are stored in the registers means that you can edit them afterwards
+if you make any mistakes or even record macros and save them in another file for later use.
+
+## Config Files *config*
+
+Vim supports custom config files that allow the mapping and remapping
+of commands to any key combination that is not already used.
+
+It is recommended to spend at least a bit of time with nearly vanilla Vim (the provided config is a good starting point) before making any major changes to your workflow.
+
+Vim by default looks for this file in `~/.vimrc`, while NeoVim looks in
+~/.config/nvim/init.vim (this only applies for Unix/Linux)
