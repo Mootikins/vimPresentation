@@ -3,7 +3,7 @@ An A-Z of what I consider to be the bare minimum to efficiently edit text in [Ne
 
 This repository contains the following, other than this readme:
 - `sample.vimrc` - a basic vim config file with some recommended settings
-- `vimPresentation.tutor` - a tutor file best used with NeoVim, but will work with standard Vim
+- `vimPresentation.tutor` - a tutor file best used with NeoVim, but will work with standard Vim. Vim doesn't hide the markup in `.tutor` files, so the markup will be visible and the table of contents will not work as intended.
 - `vimPresentation.tutor.json` - a partner `json` file for the previous file, which stores the data needed for NeoVim's tutor feature
 
 To use this tutorial/presentation most effectively, it is recommended to do the following:
